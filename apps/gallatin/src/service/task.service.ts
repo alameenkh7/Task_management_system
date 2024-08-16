@@ -20,7 +20,7 @@ export class TaskService {
   }
 
   async getTaskById(id: string): Promise<Task | null> {
-    return this.taskRepository.findOneBy({ id });
+    return this.taskRepository.findOne({ where: { id } });
   }
 
   async updateTask(
@@ -28,7 +28,7 @@ export class TaskService {
     updateData: Partial<Task>,
   ): Promise<Task | null> {
     await this.taskRepository.update(id, updateData);
-    return this.taskRepository.findOneBy({ id });
+    return this.taskRepository.findOne({ where: { id } });
   }
 
   async deleteTask(id: string): Promise<void> {
