@@ -1,0 +1,43 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/main/src",
+  "monorepo": true,
+  "projects": {
+    "main": {
+      "type": "application",
+      "root": "apps/main",
+      "entryFile": "main",
+      "sourceRoot": "apps/main/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/main/tsconfig.app.json"
+      }
+    }
+  },
+  "nashville": {
+    "type": "application",
+    "root": "apps/nashville",
+    "entryFile": "main",
+    "sourceRoot": "apps/nashville/src",
+    "compilerOptions": {
+      "tsConfigPath": "apps/nashville/tsconfig.app.json"
+    }
+  },
+  "gallatin": {
+    "type": "application",
+    "root": "apps/gallatin",
+    "entryFile": "main",
+    "sourceRoot": "apps/gallatin/src",
+    "compilerOptions": {
+      "tsConfigPath": "apps/gallatin/tsconfig.app.json"
+    },
+    "ashland": {
+      "type": "application",
+      "root": "apps/ashland",
+      "entryFile": "main",
+      "sourceRoot": "apps/ashland/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/ashland/tsconfig.app.json"
+      }
+    }
+  }
+}
