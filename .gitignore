@@ -6,6 +6,9 @@
 # Ignore dist folders in all microservices
 /apps/*/dist/
 
+# Ignore tsbuildinfo in all microservices
+apps/*/tsconfig.build.tsbuildinfo
+
 
 # Logs
 logs
