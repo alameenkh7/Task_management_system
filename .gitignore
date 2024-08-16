@@ -2,7 +2,9 @@
 /dist
 /node_modules
 /build
-apps/**/dist/
+
+# Ignore dist folders in all microservices
+/apps/*/dist/
 
 
 # Logs
