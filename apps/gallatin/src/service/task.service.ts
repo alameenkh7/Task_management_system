@@ -7,15 +7,31 @@ import { Task } from '../entities/task.entity';
 export class TaskService {
   constructor(
     @InjectRepository(Task)
-    private taskRepository: Repository<Task>,
+    private readonly taskRepository: Repository<Task>,
   ) {}
 
-  async findAll(): Promise<Task[]> {
+  async createTask(task: Partial<Task>): Promise<Task> {
+    const newTask = this.taskRepository.create(task);
+    return this.taskRepository.save(newTask);
+  }
+
+  async getTasks(): Promise<Task[]> {
     return this.taskRepository.find();
   }
 
-  async create(task: Partial<Task>): Promise<Task> {
-    const newTask = this.taskRepository.create(task);
-    return this.taskRepository.save(newTask);
+  async getTaskById(id: string): Promise<Task | null> {
+    return this.taskRepository.findOneBy({ id });
+  }
+
+  async updateTask(
+    id: string,
+    updateData: Partial<Task>,
+  ): Promise<Task | null> {
+    await this.taskRepository.update(id, updateData);
+    return this.taskRepository.findOneBy({ id });
+  }
+
+  async deleteTask(id: string): Promise<void> {
+    await this.taskRepository.delete(id);
   }
 }

@@ -1,18 +1,41 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
-import { TaskService } from '../service/task.service';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Put,
+  Delete,
+} from '@nestjs/common';
 import { Task } from '../entities/task.entity';
+import { TaskService } from '../service/task.service';
 
 @Controller('tasks')
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
-  @Get()
-  async findAll(): Promise<Task[]> {
-    return this.taskService.findAll();
+  @Post()
+  async createTask(@Body() task: Partial<Task>) {
+    return this.taskService.createTask(task);
   }
 
-  @Post()
-  async create(@Body() task: Partial<Task>): Promise<Task> {
-    return this.taskService.create(task);
+  @Get()
+  async getTasks() {
+    return this.taskService.getTasks();
+  }
+
+  @Get(':id')
+  async getTaskById(@Param('id') id: string) {
+    return this.taskService.getTaskById(id);
+  }
+
+  @Put(':id')
+  async updateTask(@Param('id') id: string, @Body() updateData: Partial<Task>) {
+    return this.taskService.updateTask(id, updateData);
+  }
+
+  @Delete(':id')
+  async deleteTask(@Param('id') id: string) {
+    return this.taskService.deleteTask(id);
   }
 }
