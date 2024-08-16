@@ -5,6 +5,7 @@
 
 # Ignore dist folders in all microservices
 /apps/*/dist/
+/apps/*/node_modules/
 
 # Ignore tsbuildinfo in all microservices
 apps/*/tsconfig.build.tsbuildinfo

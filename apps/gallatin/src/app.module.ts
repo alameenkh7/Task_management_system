@@ -1,24 +1,18 @@
 import { Module } from '@nestjs/common';
-import { ClientsModule, Transport } from '@nestjs/microservices';
-import { TaskService } from './task.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Task } from './entities/task.entity';
+import { TaskController } from './controller/task.controller';
+import { TaskService } from './service/task.service';
+import { typeOrmConfig } from './config/typeorm.config';
 
 @Module({
   imports: [
-    ClientsModule.register([
-      {
-        name: 'KAFKA_SERVICE',
-        transport: Transport.KAFKA,
-        options: {
-          client: {
-            brokers: ['localhost:9092'],
-          },
-          consumer: {
-            groupId: 'gallatin-group',
-          },
-        },
-      },
-    ]),
+    TypeOrmModule.forRootAsync({
+      useFactory: () => typeOrmConfig(),
+    }),
+    TypeOrmModule.forFeature([Task]),
   ],
+  controllers: [TaskController],
   providers: [TaskService],
 })
 export class AppModule {}
