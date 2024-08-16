@@ -715,6 +715,14 @@
     path-to-regexp "3.2.0"
     tslib "2.6.3"
 
+"@nestjs/microservices@^10.4.1":
+  version "10.4.1"
+  resolved "https://registry.yarnpkg.com/@nestjs/microservices/-/microservices-10.4.1.tgz#29eecd663dfa2a0776f484ff419e8961f3a8d158"
+  integrity sha512-DYQSqP21/Zzoj6KAiwM5wIqmvESHS454bVOzw/LSRabYngOTLDmuhCLq0dK3y9KHa2WFbbJiBd9uhLwcfTnuLg==
+  dependencies:
+    iterare "1.2.1"
+    tslib "2.6.3"
+
 "@nestjs/platform-express@^10.0.0":
   version "10.4.1"
   resolved "https://registry.npmjs.org/@nestjs/platform-express/-/platform-express-10.4.1.tgz"
@@ -737,9 +745,9 @@
     jsonc-parser "3.3.1"
     pluralize "8.0.0"
 
-"@nestjs/testing@^10.0.0":
+"@nestjs/testing@^10.4.1":
   version "10.4.1"
-  resolved "https://registry.npmjs.org/@nestjs/testing/-/testing-10.4.1.tgz"
+  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-10.4.1.tgz#146c0161ab98524ea9fafe4ca5316229d1e44387"
   integrity sha512-pR+su5+YGqCLH0RhhVkPowQK7FCORU0/PWAywPK7LScAOtD67ZoviZ7hAU4vnGdwkg4HCB0D7W8Bkg19CGU8Xw==
   dependencies:
     tslib "2.6.3"
@@ -5124,7 +5132,7 @@ superagent@^9.0.1:
 
 supertest@^7.0.0:
   version "7.0.0"
-  resolved "https://registry.npmjs.org/supertest/-/supertest-7.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/supertest/-/supertest-7.0.0.tgz#cac53b3d6872a0b317980b2b0cfa820f09cd7634"
   integrity sha512-qlsr7fIC0lSddmA3tzojvzubYxvlGtzumcdHgPwbFWMISQwL22MhM2Y3LNt+6w9Yyx7559VW5ab70dgphm8qQA==
   dependencies:
     methods "^1.1.2"
@@ -5284,9 +5292,9 @@ ts-loader@^9.4.3:
     semver "^7.3.4"
     source-map "^0.7.4"
 
-ts-node@^10.9.1:
+ts-node@^10.9.2:
   version "10.9.2"
-  resolved "https://registry.npmjs.org/ts-node/-/ts-node-10.9.2.tgz"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.9.2.tgz#70f021c9e185bccdca820e26dc413805c101c71f"
   integrity sha512-f0FFpIdcHgn8zcPSbf1dRevwt047YMnaiJM3u2w2RewrB+fob/zePZcrOyQoLMMO7aBIddLcQIEK5dYjkLnGrQ==
   dependencies:
     "@cspotcode/source-map-support" "^0.8.0"

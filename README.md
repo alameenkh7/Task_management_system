@@ -13,11 +13,15 @@ This repository contains a task management system implemented using NestJS in a 
 ## Prerequisites
 
 Before you start, ensure you have the following installed:
+
 - [Node.js](https://nodejs.org/) (v16 or higher)
 - [npm](https://www.npmjs.com/) (comes with Node.js)
+- [Docke](https://docs.docker.com/engine/install/) (for Kafka and Zookeeper setup)
 
 ## Setup
+
 ### 1. Clone the Repository
+
 First, clone the repository to your local machine:
 
 ```bash
@@ -26,6 +30,7 @@ cd task-management-system
 ```
 
 ### 2. Install Dependencies
+
 Install the dependencies for all microservices and the monorepo:
 
 ```bash
@@ -33,6 +38,7 @@ npm install
 ```
 
 ### 3. Configure Environment Variables
+
 Each microservice may require different environment variables. Ensure that you create .env files in the root directory of each microservice (apps/nashville, apps/gallatin, apps/ashland) with the appropriate configuration.
 
 Example .env for Nashville (apps/nashville/.env):
@@ -40,6 +46,7 @@ Example .env for Nashville (apps/nashville/.env):
 ```bash
 PORT=3001
 ```
+
 Example .env for Gallatin (apps/gallatin/.env):
 
 ```bash
@@ -51,7 +58,19 @@ Example .env for Ashland (apps/ashland/.env):
 ```bash
 PORT=3003
 ```
-### 4. Build All Microservices
+
+### 4. Kafka and Zookeeper Setup
+
+To set up Kafka and Zookeeper, use Docker Compose. Run the following command to start both services:
+
+```bash
+docker-compose up
+```
+
+Make sure you have a docker-compose.yml file in the root directory with the necessary configuration for Kafka and Zookeeper.
+
+### 5. Build All Microservices
+
 To build all microservices, use the following command:
 
 ```bash
@@ -64,7 +83,8 @@ Navigate to each microservice directory
 Run the npm run build command for each service
 Compile TypeScript files into JavaScript
 
-### 5. Running the Services
+### 6. Running the Services
+
 To run all microservices, you can use the following commands:
 
 Start Individual Microservices
@@ -74,6 +94,7 @@ Nashville:
 cd apps/nashville
 npm run start
 ```
+
 Gallatin:
 
 ```bash
@@ -97,9 +118,20 @@ npm run start:all
 
 Ensure that each service is configured to listen on a different port (3001, 3002, 3003, etc.) to avoid port conflicts.
 
-### 6. Verify the Setup
+### 7. Verify the Setup
+
 Once all services are running:
 
 Nashville should be accessible at http://localhost:3001
 Gallatin should be accessible at http://localhost:3002
 Ashland should be accessible at http://localhost:3003
+
+### 8. Running Tests
+
+To run tests for the entire project, use the following command:
+
+```bash
+npm run test
+```
+
+This will execute the tests across all microservices.
