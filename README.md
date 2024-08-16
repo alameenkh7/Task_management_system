@@ -1,73 +1,105 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Task Management System
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Overview
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This repository contains a task management system implemented using NestJS in a monorepo setup. The system includes multiple microservices:
 
-## Description
+This repository contains a task management system implemented using NestJS in a monorepo setup. The system includes multiple microservices:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **Nashville**: Web API (Backend Facing Frontend)
+- **Gallatin**: Task Manager microservice
+- **Ashland**: Logger microservice
 
-## Installation
+## Prerequisites
+
+Before you start, ensure you have the following installed:
+- [Node.js](https://nodejs.org/) (v16 or higher)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+
+## Setup
+### 1. Clone the Repository
+First, clone the repository to your local machine:
 
 ```bash
-$ yarn install
+git clone https://github.com/your-repository/task-management-system.git
+cd task-management-system
 ```
 
-## Running the app
+### 2. Install Dependencies
+Install the dependencies for all microservices and the monorepo:
 
 ```bash
-# development
-$ yarn run start
-
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
+npm install
 ```
 
-## Test
+### 3. Configure Environment Variables
+Each microservice may require different environment variables. Ensure that you create .env files in the root directory of each microservice (apps/nashville, apps/gallatin, apps/ashland) with the appropriate configuration.
+
+Example .env for Nashville (apps/nashville/.env):
 
 ```bash
-# unit tests
-$ yarn run test
+PORT=3001
+```
+Example .env for Gallatin (apps/gallatin/.env):
 
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
+```bash
+PORT=3002
 ```
 
-## Support
+Example .env for Ashland (apps/ashland/.env):
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+PORT=3003
+```
+### 4. Build All Microservices
+To build all microservices, use the following command:
 
-## Stay in touch
+```bash
+npm run build:all
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+This command will:
 
-## License
+Navigate to each microservice directory
+Run the npm run build command for each service
+Compile TypeScript files into JavaScript
 
-Nest is [MIT licensed](LICENSE).
+### 5. Running the Services
+To run all microservices, you can use the following commands:
+
+Start Individual Microservices
+Nashville:
+
+```bash
+cd apps/nashville
+npm run start
+```
+Gallatin:
+
+```bash
+cd apps/gallatin
+npm run start
+```
+
+Ashland:
+
+```bash
+cd apps/ashland
+npm run start
+```
+
+Start All Services Simultaneously
+To start all services at once, you can use:
+
+```bash
+npm run start:all
+```
+
+Ensure that each service is configured to listen on a different port (3001, 3002, 3003, etc.) to avoid port conflicts.
+
+### 6. Verify the Setup
+Once all services are running:
+
+Nashville should be accessible at http://localhost:3001
+Gallatin should be accessible at http://localhost:3002
+Ashland should be accessible at http://localhost:3003
