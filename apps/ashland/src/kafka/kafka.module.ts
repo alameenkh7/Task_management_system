@@ -1,27 +1,26 @@
+// src/kafka/kafka.module.ts
 import { Module } from '@nestjs/common'
-import { ConfigModule } from '@nestjs/config'
 import { ClientsModule, Transport } from '@nestjs/microservices'
-import { TaskService } from './task/task.service'
+import { KafkaService } from './kafka.service'
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
     ClientsModule.register([
       {
         name: 'TASK_SERVICE',
         transport: Transport.KAFKA,
         options: {
           client: {
-            clientId: 'nashville',
             brokers: ['localhost:9092'],
           },
           consumer: {
-            groupId: 'nashville-consumer',
+            groupId: 'ashland-group',
           },
         },
       },
     ]),
   ],
-  providers: [TaskService],
+  providers: [KafkaService],
+  exports: [KafkaService],
 })
-export class AppModule {}
+export class KafkaModule {}

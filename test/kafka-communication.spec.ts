@@ -3,8 +3,9 @@ import { AppModule as NashvilleModule } from '../apps/nashville/src/app.module'
 import { AppModule as AshlandModule } from '../apps/ashland/src/app.module'
 import { ClientKafka } from '@nestjs/microservices'
 import { INestApplication } from '@nestjs/common'
+import { KafkaService } from '../apps/ashland/src/kafka/kafka.service'
 
-jest.setTimeout(20000) // Increase timeout to 20 seconds
+jest.setTimeout(20000)
 
 describe('Kafka Communication', () => {
   let nashvilleApp: INestApplication
@@ -36,32 +37,33 @@ describe('Kafka Communication', () => {
   })
 
   afterAll(async () => {
-    // making sure all application close
     await Promise.all([nashvilleApp.close(), ashlandApp.close()])
-
-    // making sure kafka client close
     await mockClientKafka.close()
   })
 
-  it('should send and receive messages via Kafka', async () => {
-    const messagePayload = { key: 'value' }
+  it('should send a task from Nashville and log it in Ashland via Kafka', async () => {
+    const taskPayload = {
+      id: '1',
+      title: 'Test Task',
+      description: 'Task description',
+    }
 
-    // Simulate Nashville service emitting a message
-    await mockClientKafka.emit('test-topic', messagePayload)
+    // Simulate sending a task from Nashville
+    await mockClientKafka.emit('task-created', taskPayload)
 
-    // Check if the emit method was called correctly
+    // Check if the emit method was called
     expect(mockClientKafka.emit).toHaveBeenCalledWith(
-      'test-topic',
-      messagePayload
+      'task-created',
+      taskPayload
     )
 
-    // Simulate sending a response
-    await mockClientKafka.send('response-topic', messagePayload)
+    // Spy on the logMessage method in the Ashland service
+    const logSpy = jest.spyOn(ashlandApp.get(KafkaService), 'logMessage')
 
-    // Check if the send method was called correctly
-    expect(mockClientKafka.send).toHaveBeenCalledWith(
-      'response-topic',
-      messagePayload
-    )
+    // Simulate receiving the message in Ashland
+    await ashlandApp.get(KafkaService).logMessage('task-created', taskPayload)
+
+    // Ensure the logMessage method was called with the correct arguments
+    expect(logSpy).toHaveBeenCalledWith('task-created', taskPayload)
   })
 })

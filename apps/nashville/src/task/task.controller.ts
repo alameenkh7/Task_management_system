@@ -1,13 +1,13 @@
 import { Controller, Get, Post, Body } from '@nestjs/common'
-import { AppService } from './app.service'
+import { TaskService } from './task.service'
 
 @Controller('tasks')
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+export class TaskController {
+  constructor(private readonly taskService: TaskService) {}
 
   @Post()
   async createTask(@Body() task: any) {
-    return this.appService.createTask(task)
+    return this.taskService.createTask(task)
   }
 
   @Get()

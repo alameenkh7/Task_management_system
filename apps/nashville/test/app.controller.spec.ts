@@ -1,17 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { AppService } from '../src/app.service'
-import { AppController } from '../src/app.controller'
+import { TaskService } from '../src/task/task.service'
+import { TaskController } from '../src/task/task.controller'
 
 describe('AppController', () => {
-  let appController: AppController
-  let appService: AppService
+  let appController: TaskController
+  let appService: TaskService
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      controllers: [AppController],
+      controllers: [TaskController],
       providers: [
         {
-          provide: AppService,
+          provide: TaskService,
           useValue: {
             createTask: jest.fn(),
             getTasks: jest.fn().mockResolvedValue([]),
@@ -20,8 +20,8 @@ describe('AppController', () => {
       ],
     }).compile()
 
-    appController = app.get<AppController>(AppController)
-    appService = app.get<AppService>(AppService)
+    appController = app.get<TaskController>(TaskController)
+    appService = app.get<TaskService>(TaskService)
   })
 
   describe('createTask', () => {
