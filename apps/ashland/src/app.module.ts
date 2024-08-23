@@ -1,12 +1,9 @@
-// src/app.module.ts
 import { Module } from '@nestjs/common'
-import { ConfigModule } from './config/config.module'
-import { KafkaModule } from './kafka/kafka.module'
-import { KafkaController } from './kafka/kafka.controller'
+import { RabbitMQModule } from './rabbitmq/rabbitmq.module'
+import { RabbitMQController } from './rabbitmq/rabbitmq.controller'
 
 @Module({
-  imports: [ConfigModule, KafkaModule],
-  controllers: [KafkaController],
-  providers: [],
+  imports: [RabbitMQModule],
+  controllers: [RabbitMQController],
 })
 export class AppModule {}

@@ -26,7 +26,7 @@ describe('AppController', () => {
 
   describe('createTask', () => {
     it('should call AppService.createTask with the provided task', async () => {
-      const task = { title: 'Test Task' }
+      const task = { name: 'Test Task', description: 'new description' }
       await appController.createTask(task)
       expect(appService.createTask).toHaveBeenCalledWith(task)
     })

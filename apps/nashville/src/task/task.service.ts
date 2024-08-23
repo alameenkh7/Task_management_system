@@ -1,14 +1,12 @@
-import { Inject, Injectable } from '@nestjs/common'
-import { ClientKafka } from '@nestjs/microservices'
+import { Injectable } from '@nestjs/common'
+import { RabbitMQService } from '../rabbitmq/rabbitmq.service'
 
 @Injectable()
 export class TaskService {
-  constructor(
-    @Inject('TASK_SERVICE') private readonly kafkaClient: ClientKafka
-  ) {}
+  constructor(private readonly rabbitMqService: RabbitMQService) {}
 
   // Example method to communicate with the Task Manager service via Kafka
   async createTask(task: any) {
-    return this.kafkaClient.send('task-created', task)
+    return this.rabbitMqService.emitTaskCreated(task)
   }
 }
